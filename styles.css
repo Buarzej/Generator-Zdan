@@ -1,0 +1,106 @@
+body {
+    background-color: #f5f5f6;
+    font-family: Roboto, sans-serif;
+    font-size: 50px;
+    margin: auto;
+}
+
+.center {
+    margin: auto;
+}
+
+.center-buttons {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.sentence-cell {
+    white-space: normal;
+    width: 336px;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+.disabled-sentence-cell {
+    white-space: normal;
+    width: 336px;
+    color: rgba(0, 0, 0, 0.38);
+}
+
+.spacer-div-cell {
+    width: 300px;
+    max-width: 100%;
+}
+
+hr {
+    margin: 8px 0;
+}
+
+.mdl-list__item-primary-content {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.mdl-data-table__cell--non-numeric {
+    font-size: 18px;
+}
+
+.mdl-textfield__input {
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+}
+
+.mdl-list__item {
+    padding: 4px;
+}
+
+.mdl-checkbox {
+    margin: 4px 0 4px 8px;
+}
+
+.mdl-list__item-secondary-action {
+    margin: 8px;
+}
+
+.mdl-snackbar__text {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.mdl-dialog {
+    padding: 25px;
+}
+
+.mdl-dialog__content {
+    padding: 5px;
+    color: black;
+}
+
+.menu-headline {
+    padding: 0 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #673AB7;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.mdl-mini-footer {
+    position: fixed;
+    padding: 8px 16px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 4;
+}
+
+.mdl-snackbar {
+    bottom: 60px;
+}
+
+.mdl-tooltip {
+    text-transform: none;
+}
