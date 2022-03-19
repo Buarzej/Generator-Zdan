@@ -1,7 +1,7 @@
-var historyQueue = [];
-var historyIndicator = -1;
-var historyMaxLength = 100;
-var currentView = "";
+let historyQueue = [];
+let historyIndicator = -1;
+const historyMaxLength = 100;
+let currentView = "";
 
 function undo() {
     sentences = copyArray(historyQueue[--historyIndicator]);
@@ -47,7 +47,7 @@ function redo() {
 }
 
 function addToHistory() {
-    // Test przepełnienia historii
+    // Test przepełnienia historii.
     if (historyQueue.length === historyMaxLength && historyIndicator === historyQueue.length - 1) {
         historyQueue.splice(0, 1);
         historyQueue.push(copyArray(sentences));

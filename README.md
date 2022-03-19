@@ -1,8 +1,9 @@
-# Generator-Zdan
+# Generator Zdań (Sentence generator)
 
-Program umożliwiający generowanie akapitów ze zdań składowych.
-Działająca wersja jest dostępna pod adresem `generatorzdan.rf.gd`.
+A JavaScript program that allows you to generate whole paragraphs from component sentences. A working version should be available [here](https://students.mimuw.edu.pl/~bw429663/).
 
-W celu wygenerowania nowego akapitu, należy dodać zdania składowe, odpowiednie z nich zaznaczyć i nacisnąć "Połącz zdania".
+In order to generate a new paragraph, add the sentences, select the appropriate ones and then press "Combine sentences".
 
-Aplikacja obsługuje zapis listy do pliku w celu późniejszego wczytania, a komputerowa wersja dodatkowo operacje na wielu kolumnach ze zdaniami.
+The application supports saving the list to a file for later reading, the computer version also supports operations on multiple columns with sentences.
+
+_This project is fully written and presented in Polish._

@@ -8,9 +8,9 @@ function bootSequence() {
     activateDesktopVersion()
 }
 
-function activateEnter() {  // Aktywuje zatwierdzanie dodawania nowych zdań enterem
+function activateEnter() {
     for (let i = 1; i <= maxColumn; i++) {
-        var input = document.getElementById("new" + i);
+        const input = document.getElementById("new" + i);
         input.addEventListener("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
@@ -20,8 +20,8 @@ function activateEnter() {  // Aktywuje zatwierdzanie dodawania nowych zdań ent
     }
 }
 
-function activateEditEnter() {  // Aktywuje zatwierdzanie zdań enterem w oknie dialogowym edycji zdań
-    var editSentencesInput = document.getElementById("edit-sentences-dialog-textbox");
+function activateEditEnter() {
+    const editSentencesInput = document.getElementById("edit-sentences-dialog-textbox");
     editSentencesInput.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -31,8 +31,8 @@ function activateEditEnter() {  // Aktywuje zatwierdzanie zdań enterem w oknie 
 }
 
 function activateFiles() {
-    var temp = [];
-    var input = document.getElementById("fileInput");
+    let temp = [];
+    const input = document.getElementById("fileInput");
     input.addEventListener('change', function selectedFileChanged() {
         if (this.files.length !== 0) {
             const reader = new FileReader();
@@ -45,12 +45,12 @@ function activateFiles() {
                     return
                 }
 
-                // Sprawdzanie konwersji pliku
+                // Sprawdzanie konwersji pliku.
                 if (Array.isArray(temp)) {
                     orderOfCombining = "horizontal";
                     sentences = temp;
 
-                    // Konwersja tablic jednowymiarowych
+                    // Konwersja tablic jednowymiarowych.
                     if (getdim(temp) !== false) {
                         if (getdim(temp).length === 1) {
                             sentences = [];
@@ -63,7 +63,7 @@ function activateFiles() {
                         }
                     }
 
-                    // Scalanie kolumn w jedną w wersji mobilnej
+                    // Scalanie kolumn w jedną w wersji mobilnej.
                     if (isSmallScreen() && temp.length > 1) {
                         openOneColumnDialog();
                         return
@@ -79,7 +79,7 @@ function activateFiles() {
                 orderOfCombining = temp.order;
                 sentences = temp.list;
 
-                // Scalanie kolumn w jedną w wersji mobilnej
+                // Scalanie kolumn w jedną w wersji mobilnej.
                 if (isSmallScreen() && temp.list.length > 1) {
                     openOneColumnDialog();
                     return
@@ -97,8 +97,8 @@ function activateFiles() {
 
 function activateDesktopVersion() {
     if (isDesktopComputer()) {
-        for (let j = 0; j < 10; j++) { // Nie wiem, czemu działa, ale działa
-            var mobileElements = document.getElementsByClassName("mdl-layout--large-screen-only");
+        for (let j = 0; j < 10; j++) { // Nie wiem, czemu działa, ale działa.
+            const mobileElements = document.getElementsByClassName("mdl-layout--large-screen-only");
             for (let i = 0; i < mobileElements.length; i++) {
                 mobileElements[i].classList.remove("mdl-layout--large-screen-only");
             }
@@ -108,7 +108,7 @@ function activateDesktopVersion() {
 
 function activateKeyboardShortcuts() {
     document.onkeydown = function () {
-        var evtobj = window.event ? event : e
+        const evtobj = window.event ? event : e;
         if (evtobj.keyCode === 90 && evtobj.ctrlKey && evtobj.shiftKey) {
             document.getElementById("redo").click();
         } else if (evtobj.keyCode === 89 && evtobj.ctrlKey) {
@@ -127,8 +127,8 @@ function fitTable() {
 }
 
 function clickCheckbox(labelID, checkboxID) {
-    var checkboxLabel = document.getElementById(labelID);
-    var checkbox = document.getElementById(checkboxID);
+    const checkboxLabel = document.getElementById(labelID);
+    const checkbox = document.getElementById(checkboxID);
     if (checkbox.checked) {
         checkboxLabel.MaterialCheckbox.uncheck();
     } else {
@@ -137,15 +137,15 @@ function clickCheckbox(labelID, checkboxID) {
 }
 
 function snackbar(string) {
-    var notification = document.querySelector('.mdl-js-snackbar');
+    const notification = document.querySelector('.mdl-js-snackbar');
     notification.MaterialSnackbar.showSnackbar(
         {message: string}
     );
 }
 
 function writeToFile(content) {
-    var a = document.createElement("a");
-    var file = new Blob([content], {type: 'text/plain'});
+    const a = document.createElement("a");
+    const file = new Blob([content], {type: 'text/plain'});
     a.href = URL.createObjectURL(file);
     a.download = "lista.txt";
     a.click();
@@ -163,7 +163,7 @@ function isDesktopComputer() {
 }
 
 function arrayMove(arr, fromIndex, toIndex) {
-    var element = arr[fromIndex];
+    const element = arr[fromIndex];
     arr.splice(fromIndex, 1);
     arr.splice(toIndex, 0, element);
 }
@@ -180,32 +180,3 @@ function copyArray(aObject) {
     }
     return bObject;
 }
-
-/*function synchronizeSettings() {
-    if (getCookie("twoColumns") === "1") {
-        twoColumns = "1";
-    }
-}
-
-function setCookie(cname, cvalue) {
-    var d = new Date();
-    d.setTime(d.getTime() + (90 * 24 * 60 * 60 * 1000));
-    var expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}*/

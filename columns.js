@@ -1,18 +1,18 @@
-var mergeID = -1;
-var moveID = -1;
+let mergeID = -1;
+let moveID = -1;
 
 function generateRemoveColumns() {
     removeList();
-    var list = document.createElement('table');
+    const list = document.createElement('table');
     list.className = "mdl-data-table mdl-js-data-table center";
     list.style = "margin-top: 24px; margin-bottom: 24px";
     list.id = "list";
 
-    var content = document.getElementById("content");
-    var tableBody = document.createElement('tbody');
-    var tableRow;
-    var tableData;
-    var buttons;
+    const content = document.getElementById("content");
+    const tableBody = document.createElement('tbody');
+    let tableRow;
+    let tableData;
+    let buttons;
 
     maxColumn = sentences.length;
     maxRow = 0;
@@ -45,7 +45,7 @@ function generateRemoveColumns() {
         tableBody.appendChild(tableRow);
     }
 
-    // Zaznaczanie do usunięcia
+    // Zaznaczanie do usunięcia.
     tableRow = document.createElement('tr');
     for (let i = 0; i < maxColumn; i++) {
         tableData = document.createElement('td');
@@ -66,7 +66,7 @@ function generateRemoveColumns() {
     }
     tableBody.appendChild(tableRow);
 
-    // Przycisk usuwania
+    // Przycisk usuwania.
     buttons = document.createElement('div');
     buttons.id = "buttons";
     buttons.className = "center-buttons"
@@ -81,16 +81,16 @@ function generateRemoveColumns() {
 
 function generateMergeColumns() {
     removeList();
-    var list = document.createElement('table');
+    const list = document.createElement('table');
     list.className = "mdl-data-table mdl-js-data-table center";
     list.style = "margin-top: 24px; margin-bottom: 24px";
     list.id = "list";
 
-    var content = document.getElementById("content");
-    var tableBody = document.createElement('tbody');
-    var tableRow;
-    var tableData;
-    var buttons;
+    const content = document.getElementById("content");
+    const tableBody = document.createElement('tbody');
+    let tableRow;
+    let tableData;
+    let buttons;
 
     maxColumn = sentences.length;
     maxRow = 0;
@@ -123,7 +123,7 @@ function generateMergeColumns() {
         tableBody.appendChild(tableRow);
     }
 
-    // Przyciski łączenia
+    // Przyciski łączenia.
     tableRow = document.createElement('tr');
     for (let i = 0; i < maxColumn; i++) {
         tableData = document.createElement('td');
@@ -138,7 +138,7 @@ function generateMergeColumns() {
     }
     tableBody.appendChild(tableRow);
 
-    // Przycisk wyjścia z trybu łączenia
+    // Przycisk wyjścia z trybu łączenia.
     buttons = document.createElement('div');
     buttons.id = "buttons";
     buttons.className = "center-buttons";
@@ -153,16 +153,16 @@ function generateMergeColumns() {
 
 function generateMoveColumns() {
     removeList();
-    var list = document.createElement('table');
+    const list = document.createElement('table');
     list.className = "mdl-data-table mdl-js-data-table center";
     list.style = "margin-top: 24px; margin-bottom: 24px";
     list.id = "list";
 
-    var content = document.getElementById("content");
-    var tableBody = document.createElement('tbody');
-    var tableRow;
-    var tableData;
-    var buttons;
+    const content = document.getElementById("content");
+    const tableBody = document.createElement('tbody');
+    let tableRow;
+    let tableData;
+    let buttons;
 
     maxColumn = sentences.length;
     maxRow = 0;
@@ -197,7 +197,7 @@ function generateMoveColumns() {
         tableBody.appendChild(tableRow);
     }
 
-    // Przyciski przesuwania
+    // Przyciski przesuwania.
     tableRow = document.createElement('tr');
     for (let i = 0; i < maxColumn; i++) {
         tableData = document.createElement('td');
@@ -216,7 +216,7 @@ function generateMoveColumns() {
     tableRow.appendChild(tableData);
     tableBody.appendChild(tableRow);
 
-    // Przycisk wyjścia z trybu przesuwania
+    // Przycisk wyjścia z trybu przesuwania.
     buttons = document.createElement('div');
     buttons.id = "buttons";
     buttons.className = "center-buttons";
@@ -237,9 +237,9 @@ function addColumn() {
 }
 
 function removeColumns() {
-    var toRemove = [];
+    const toRemove = [];
     for (let i = 1; i <= maxColumn; i++) {
-        var checkbox = document.getElementById("checkbox-remove" + i);
+        const checkbox = document.getElementById("checkbox-remove" + i);
         if (checkbox.checked) {
             toRemove.push(i);
         }
@@ -248,7 +248,7 @@ function removeColumns() {
         snackbar("Nie można usunąć wszystkich kolumn");
         return
     }
-    var pomocnicza = 0;
+    let pomocnicza = 0;
     for (let j = 0; j < toRemove.length; j++) {
         sentences.splice(toRemove[j] - 1 - pomocnicza, 1);
         pomocnicza++;
@@ -290,10 +290,10 @@ function mergeColumns(index) {
 }
 
 function mergeColumnsIntoOne() {
-    var temp = sentences;
+    const temp = sentences;
     sentences = [[]];
     if (orderOfCombining === "horizontal") {
-        var tempMaxRow = 0;
+        let tempMaxRow = 0;
         for (let i = 0; i < temp.length; i++) {
             tempMaxRow = Math.max(tempMaxRow, temp[i].length);
         }
@@ -306,7 +306,7 @@ function mergeColumnsIntoOne() {
         }
     } else {
         for (let i = 0; i < temp.length; i++) {
-            var koniec = temp[i].length;
+            const koniec = temp[i].length;
             for (let j = 0; j < koniec; j++) {
                 sentences[0].push(temp[i][j]);
             }

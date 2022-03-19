@@ -23,14 +23,14 @@ function validator(d) {
 
 // Combines dim and validator to get the required function.
 function getdim(mat) {
-    var d = dim(mat);
+    const d = dim(mat);
     return validator(d)(mat) ? d : false;
 }
 
 // Checks whether predicate applies to every element of array arr.
 // This ought to be built into JS some day!
 function every(arr, predicate) {
-    var i, N;
+    let i, N;
     for (i = 0, N = arr.length; i < N; ++i) {
         if (!predicate(arr[i])) {
             return false;

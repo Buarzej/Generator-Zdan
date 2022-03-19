@@ -1,26 +1,26 @@
-var sentences = [[]];
-var orderOfCombining = "horizontal";
-var maxColumn;
-var maxRow;
+let sentences = [[]];
+let orderOfCombining = "horizontal";
+let maxColumn;
+let maxRow;
 
-var checkedCheckboxes = [];
+let checkedCheckboxes = [];
 
-var changeSentenceOrderID = [];
-var changeSentenceOrderButtons = [];
-var editSentenceCounter;
-var editSentenceList;
+let changeSentenceOrderID = [];
+let changeSentenceOrderButtons = [];
+let editSentenceCounter;
+let editSentenceList;
 
 function generateList() {
-    var list = document.createElement('table');
+    const list = document.createElement('table');
     list.className = "mdl-data-table mdl-js-data-table center";
     list.style = "margin-top: 24px; margin-bottom: 24px";
     list.id = "list";
 
-    var content = document.getElementById("content");
-    var tableBody = document.createElement('tbody');
-    var tableRow;
-    var tableData;
-    var buttons;
+    const content = document.getElementById("content");
+    const tableBody = document.createElement('tbody');
+    let tableRow;
+    let tableData;
+    let buttons;
 
     maxColumn = sentences.length;
     maxRow = 0;
@@ -58,7 +58,7 @@ function generateList() {
         tableBody.appendChild(tableRow);
     }
 
-    // Dodawanie zdania
+    // Dodawanie zdania.
     tableRow = document.createElement('tr');
     for (let i = 0; i < maxColumn; i++) {
         tableData = document.createElement('td');
@@ -68,15 +68,15 @@ function generateList() {
         tableData = document.createElement('td');
         tableData.className = "mdl-data-table__cell--non-numeric";
         if (isSmallScreen()) {
-            tableData.innerHTML = "<div id=\"table-new-sentence\" class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\" style=\"width: auto\"><input class=\"mdl-textfield__input\" type=\"text\" autocomplete=\"no\" id=\"new" + (i + 1) + "\" tabindex=\"" + (i + 1) + "\"><label class=\"mdl-textfield__label\" for=\"new" + (i + 1) + "\">Nowe zdanie...</label></div>";
+            tableData.innerHTML = "<div id=\"table-new-sentence\" class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\" style=\"width: auto\"><input class=\"mdl-textfield__input\" type=\"text\" autocomplete=\"no\" id=\"new" + (i + 1) + "\"><label class=\"mdl-textfield__label\" for=\"new" + (i + 1) + "\">Nowe zdanie...</label></div>";
         } else {
-            tableData.innerHTML = "<div id=\"table-new-sentence\" class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\"><input class=\"mdl-textfield__input\" type=\"text\" autocomplete=\"no\" id=\"new" + (i + 1) + "\" tabindex=\"" + (i + 1) + "\"><label class=\"mdl-textfield__label\" for=\"new" + (i + 1) + "\">Nowe zdanie...</label></div>";
+            tableData.innerHTML = "<div id=\"table-new-sentence\" class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\"><input class=\"mdl-textfield__input\" type=\"text\" autocomplete=\"no\" id=\"new" + (i + 1) + "\"><label class=\"mdl-textfield__label\" for=\"new" + (i + 1) + "\">Nowe zdanie...</label></div>";
         }
         tableRow.appendChild(tableData);
     }
     tableBody.appendChild(tableRow);
 
-    // Przyciski
+    // Przyciski.
     buttons = document.createElement('div');
     buttons.id = "buttons";
     buttons.className = "center-buttons"
@@ -94,16 +94,16 @@ function generateList() {
 
 function generateChangeSentenceOrder() {
     removeList();
-    var list = document.createElement('table');
+    const list = document.createElement('table');
     list.className = "mdl-data-table mdl-js-data-table center";
     list.style = "margin-top: 24px; margin-bottom: 24px";
     list.id = "list";
 
-    var content = document.getElementById("content");
-    var tableBody = document.createElement('tbody');
-    var tableRow;
-    var tableData;
-    var buttons;
+    const content = document.getElementById("content");
+    const tableBody = document.createElement('tbody');
+    let tableRow;
+    let tableData;
+    let buttons;
 
     maxColumn = sentences.length;
     maxRow = 0;
@@ -111,7 +111,7 @@ function generateChangeSentenceOrder() {
         maxRow = Math.max(maxRow, sentences[i].length);
     }
 
-    var blockedColumns = new Array(maxColumn);
+    const blockedColumns = new Array(maxColumn);
     changeSentenceOrderButtons = [];
     for (let j = 0; j <= maxRow; j += 0.5) {
         tableRow = document.createElement('tr');
@@ -165,7 +165,7 @@ function generateChangeSentenceOrder() {
         tableBody.appendChild(tableRow);
     }
 
-    // Przycisk wyjścia z trybu zmiany kolejności
+    // Przycisk wyjścia z trybu zmiany kolejności.
     buttons = document.createElement('div');
     buttons.id = "buttons";
     buttons.className = "center-buttons";
@@ -184,8 +184,8 @@ function removeList() {
     changeSentenceOrderID = [];
     changeSentenceOrderButtons = [];
 
-    var oldList = document.getElementById("list");
-    var oldButtons = document.getElementById("buttons");
+    const oldList = document.getElementById("list");
+    const oldButtons = document.getElementById("buttons");
     oldList.remove();
     oldButtons.remove();
 }
@@ -193,12 +193,12 @@ function removeList() {
 function addSentences(column) {
     saveCheckboxes();
 
-    var clickedInput = document.getElementById("new" + column);
+    const clickedInput = document.getElementById("new" + column);
     if (clickedInput.value === "") {
         clickedInput.focus();
         return
     }
-    var input;
+    let input;
     for (let i = 0; i < maxColumn; i++) {
         input = document.getElementById("new" + (i + 1));
         if (input.value !== "") {
@@ -213,10 +213,10 @@ function addSentences(column) {
 
 function removeSentences() {
     for (let i = 1; i <= maxColumn; i++) {
-        var pomocnicza = 0;
-        var koniec = sentences[i - 1].length;
+        let pomocnicza = 0;
+        const koniec = sentences[i - 1].length;
         for (let j = 1; j <= koniec; j++) {
-            var checkbox = document.getElementById("checkbox" + i + "-" + j);
+            const checkbox = document.getElementById("checkbox" + i + "-" + j);
             if (checkbox.checked) {
                 sentences[i - 1].splice(j - 1 - pomocnicza, 1);
                 pomocnicza++;
@@ -229,7 +229,7 @@ function removeSentences() {
 }
 
 function combineSentences() {
-    var wybrane = [];
+    const wybrane = [];
     if (orderOfCombining === "horizontal") {
         for (let i = 1; i <= maxRow; i++) {
             for (let j = 1; j <= maxColumn; j++) {
@@ -242,7 +242,7 @@ function combineSentences() {
         }
     } else {
         for (let i = 1; i <= maxColumn; i++) {
-            var koniec = sentences[i - 1].length;
+            const koniec = sentences[i - 1].length;
             for (let j = 1; j <= koniec; j++) {
                 var checkbox = document.getElementById("checkbox" + i + "-" + j);
                 if (checkbox.checked) {
@@ -252,7 +252,7 @@ function combineSentences() {
         }
     }
     if (wybrane.length === 0) {
-        snackbar("Zaznacz zdania do połączenia");
+        snackbar("Wybierz zdania do połączenia");
         return
     }
     const element = document.createElement('textarea');
@@ -274,11 +274,11 @@ function activateChangeSentenceOrder(column, row) {
     document.getElementById("change-sentence-order-button" + column + "-" + (row + 1)).disabled = "disabled";
 
     for (let i = 0; i < maxColumn; i++) {
-        var koniec = sentences[i].length;
+        const koniec = sentences[i].length;
         for (let j = 0; j < koniec; j++) {
-            var sentenceButton = document.getElementById("change-sentence-order-sentence-button" + i + "-" + j);
-            var sentenceCell = document.getElementById("change-sentence-order-sentence-cell" + i + "-" + j);
-            var sentenceButtonIcon = document.getElementById("change-sentence-order-sentence-button-icon" + i + "-" + j);
+            const sentenceButton = document.getElementById("change-sentence-order-sentence-button" + i + "-" + j);
+            const sentenceCell = document.getElementById("change-sentence-order-sentence-cell" + i + "-" + j);
+            const sentenceButtonIcon = document.getElementById("change-sentence-order-sentence-button-icon" + i + "-" + j);
             sentenceButton.disabled = "disabled";
             sentenceCell.className = "mdl-data-table__cell--non-numeric disabled-sentence-cell";
             if (i !== column || j !== row) {
@@ -291,8 +291,8 @@ function activateChangeSentenceOrder(column, row) {
 }
 
 function changeSentenceOrder(toColumn, toRow) {
-    var column = changeSentenceOrderID[0];
-    var row = changeSentenceOrderID[1];
+    const column = changeSentenceOrderID[0];
+    const row = changeSentenceOrderID[1];
     if (column === toColumn) {
         if (toRow < row) {
             arrayMove(sentences[column], row, toRow);
@@ -310,9 +310,9 @@ function changeSentenceOrder(toColumn, toRow) {
 function editSentences() {
     editSentenceList = [];
     for (let i = 1; i <= maxColumn; i++) {
-        var koniec = sentences[i - 1].length;
+        const koniec = sentences[i - 1].length;
         for (let j = 1; j <= koniec; j++) {
-            var checkbox = document.getElementById("checkbox" + i + "-" + j);
+            const checkbox = document.getElementById("checkbox" + i + "-" + j);
             if (checkbox.checked) {
                 editSentenceList.push([sentences[i - 1][j - 1], i - 1, j - 1]);
             }
@@ -326,7 +326,7 @@ function editSentences() {
     document.getElementById("edit-sentences-dialog-textbox").value = editSentenceList[0][0];
     editSentenceCounter = 0;
 
-    var dialogButton = document.getElementById("edit-sentences-dialog-button");
+    const dialogButton = document.getElementById("edit-sentences-dialog-button");
     if (editSentenceList.length === 1) {
         dialogButton.innerText = "Gotowe";
     } else {
@@ -347,12 +347,11 @@ function editSentences() {
 }
 
 function editNextSentence() {
-    console.log("klik!");
-    var dialogButton = document.getElementById("edit-sentences-dialog-button");
-    var dialogTextbox = document.getElementById("edit-sentences-dialog-textbox")
+    const dialogButton = document.getElementById("edit-sentences-dialog-button");
+    const dialogTextbox = document.getElementById("edit-sentences-dialog-textbox");
 
-    var column = editSentenceList[editSentenceCounter][1];
-    var row = editSentenceList[editSentenceCounter][2];
+    const column = editSentenceList[editSentenceCounter][1];
+    const row = editSentenceList[editSentenceCounter][2];
     sentences[column].splice(row, 1, dialogTextbox.value);
     addToHistory();
     removeList();
@@ -374,9 +373,9 @@ function editNextSentence() {
 function saveCheckboxes() {
     checkedCheckboxes = [];
     for (let i = 1; i <= sentences.length; i++) {
-        var koniec = sentences[i - 1].length;
+        const koniec = sentences[i - 1].length;
         for (let j = 1; j <= koniec; j++) {
-            var checkbox = document.getElementById("checkbox" + i + "-" + j);
+            const checkbox = document.getElementById("checkbox" + i + "-" + j);
             if (checkbox.checked) {
                 checkedCheckboxes.push([i, j]);
             }
@@ -386,7 +385,7 @@ function saveCheckboxes() {
 
 function loadCheckboxes() {
     for (let i = 0; i < checkedCheckboxes.length; i++) {
-        var checkboxLabel = document.getElementById("checkbox-label" + checkedCheckboxes[i][0] + "-" + checkedCheckboxes[i][1]);
+        const checkboxLabel = document.getElementById("checkbox-label" + checkedCheckboxes[i][0] + "-" + checkedCheckboxes[i][1]);
         checkboxLabel.MaterialCheckbox.check();
     }
     checkedCheckboxes = [];

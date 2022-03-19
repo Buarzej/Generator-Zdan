@@ -19,7 +19,7 @@ function saveList() {
         snackbar("Lista jest pusta");
         return
     }
-    var listObject = {order: orderOfCombining, list: sentences};
+    const listObject = {order: orderOfCombining, list: sentences};
     const jsonArray = JSON.stringify(listObject);
     writeToFile(jsonArray);
 }
@@ -50,7 +50,7 @@ function openOrderOfCombiningDialog() {
     if (!orderOfCombiningListenerExists) {
         dialog.querySelector('.close').addEventListener('click', function () {
             for (let i = 1; i <= 2; i++) {
-                var radioButton = document.getElementById("order-of-combining-radio" + i);
+                const radioButton = document.getElementById("order-of-combining-radio" + i);
                 if (radioButton.checked) {
                     orderOfCombining = radioButton.value;
                     break
@@ -110,12 +110,3 @@ function openOneColumnDialog() {
         oneColumnDialogListenerExists = true;
     }
 }
-
-/*function generateSettings() {
-    var twoColumnsOption = document.getElementById("twoColumnsOption");
-    if (twoColumns === "0") {
-        twoColumnsOption.innerText = "Widok dwóch kolumn";
-    } else {
-        twoColumnsOption.innerText = "Widok jednej kolumny";
-    }
-}*/
